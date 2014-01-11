@@ -17,8 +17,7 @@ var translate = module.exports = function(query, cb) {
       if (link.attribs.lang) {
         res.translations.push({
           word: link.attribs.title.split(' – ')[0],
-          language: link.attribs.lang,
-          code: link.attribs.title.split(' – ')[1],
+          lang: link.attribs.lang,
           href: link.attribs.href
         })
       }
