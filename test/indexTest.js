@@ -58,4 +58,14 @@ describe("wikipedia-translator", function() {
     })
   })
 
+
+  it("cleans up funky french hyphens", function(done) {
+    translate("pomme", "fr", function(err, translation) {
+      translation.should.have.property('lang', 'fr')
+      translation.translations.map(function(t) { return t.word }).should.include('apple');
+      done()
+    })
+  })
+
+
 })

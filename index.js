@@ -23,7 +23,11 @@ var translate = module.exports = function(query, lang, cb) {
     $(links).each(function(i, link){
       if (link.attribs.lang) {
         res.translations.push({
-          word: link.attribs.title.replace(/ – .*/, '').replace(/ \(.*\)$/, '').toLowerCase(),
+          word: link.attribs.title
+            .replace(/ – .*$/, '')    // one kind of hyphen
+            .replace(/ — .*$/, '')    // another kind of hyphen
+            .replace(/ \(.*\)$/, '')  // trailing parentheticals
+            .toLowerCase(),
           lang: link.attribs.lang,
           href: link.attribs.href
         })
