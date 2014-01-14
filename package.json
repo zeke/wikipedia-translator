@@ -1,6 +1,6 @@
 {
   "name": "wikipedia-translator",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Scrape translations from Wikipedia pages",
   "main": "index.js",
   "scripts": {
