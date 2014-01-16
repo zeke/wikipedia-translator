@@ -1,4 +1,4 @@
-# Wikipedia Translator
+# Wikipedia Translator [![Build Status](https://travis-ci.org/zeke/wikipedia-translator.png?branch=master)](https://travis-ci.org/zeke/wikipedia-translator)
 
 > A node module that scrapes translations from Wikipedia pages
 
