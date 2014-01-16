@@ -15,8 +15,8 @@ describe("wikipedia-translator", function() {
       translation.translations.length.should.be.above(10)
 
       var first = translation.translations[0]
-      first.should.have.property('word', 'kaas')
-      first.should.have.property('lang', 'af')
+      first.should.have.property('word')
+      first.should.have.property('lang')
       first.should.have.property('href')
 
       done()
@@ -66,6 +66,20 @@ describe("wikipedia-translator", function() {
       done()
     })
   })
+
+  it("sorts results by levenshtein distance", function(done) {
+    translate("bread", "en", function(err, translation) {
+      var words = translation.translations.map(function(t) { return t.word })
+      words.indexOf('breid').should.be.below(20)
+      words.indexOf('brood').should.be.below(20)
+      words.indexOf('breyð').should.be.below(20)
+      words.indexOf('brauð').should.be.below(20)
+
+      words.indexOf('umugati').should.be.above(50)
+      done()
+    })
+  })
+
 
 
 })

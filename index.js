@@ -1,5 +1,6 @@
 var request = require('request');
 var cheerio = require('cheerio');
+var Levenshtein = require('levenshtein');
 
 var translate = module.exports = function(query, lang, cb) {
 
@@ -22,7 +23,8 @@ var translate = module.exports = function(query, lang, cb) {
 
     $(links).each(function(i, link){
       if (link.attribs.lang) {
-        res.translations.push({
+
+        var t = {
           word: link.attribs.title
             .replace(/ – .*$/, '')    // one kind of hyphen
             .replace(/ — .*$/, '')    // another kind of hyphen
@@ -30,8 +32,23 @@ var translate = module.exports = function(query, lang, cb) {
             .toLowerCase(),
           lang: link.attribs.lang,
           href: link.attribs.href
-        })
+        }
+
+        // Calculate levenshtein distance between query and this result
+        t.levenshteinDistance = new Levenshtein(query, t.word).distance
+
+        res.translations.push(t)
       }
+    });
+
+    res.translations.sort(function (a, b) {
+      a = a.levenshteinDistance
+      b = b.levenshteinDistance
+      if (a > b)
+        return 1
+      if (a < b)
+        return -1
+      return 0
     });
 
     cb(null, res);
