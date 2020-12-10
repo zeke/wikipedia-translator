@@ -7,10 +7,7 @@
     "test": "jest test.js",
     "lint": "standard --fix"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/zeke/wikipedia-translator"
-  },
+  "repository": "https://github.com/zeke/wikipedia-translator",
   "keywords": [
     "wikipedia",
     "language",
@@ -20,10 +17,6 @@
   ],
   "author": "zeke",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/zeke/wikipedia-translator/issues"
-  },
-  "homepage": "https://github.com/zeke/wikipedia-translator",
   "dependencies": {
     "cheerio": "~0.13.1",
     "request": "~2.31.0",
