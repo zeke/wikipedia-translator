@@ -9,7 +9,7 @@ const translate = function (query, lang, cb) {
     lang = 'en'
   }
 
-  const url = 'http://' + lang + '.wikipedia.org/wiki/' + query
+  const url = encodeURI('http://' + lang + '.wikipedia.org/wiki/' + query)
 
   request(url, function (err, resp, body) {
     if (err) return cb(err)

@@ -71,12 +71,24 @@ describe('wikipedia-translator', function () {
     translate('bread', 'en', function (err, translation) {
       if (err) console.log(err)
       const words = translation.translations.map(function (t) { return t.word })
+      words.indexOf('breid').should.be.above(0)
       words.indexOf('breid').should.be.below(20)
+      
+      words.indexOf('brood').should.be.above(0)
       words.indexOf('brood').should.be.below(20)
       // words.indexOf('breyð').should.be.below(20)
       // words.indexOf('brauð').should.be.below(20)
 
       words.indexOf('umugati').should.be.above(50)
+      done()
+    })
+  })
+
+  it('handles character encoding', function (done) {
+    translate('jadinnge - 科隆语', 'ksh', function (err, translation) {
+      if (err) console.log(err)
+      translation.should.have.property('query', 'jadinnge - 科隆语')
+      translation.should.have.property('translations')
       done()
     })
   })
